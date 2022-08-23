@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.vjchauhan.cleanmvvmcoroutinehilt">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -16,7 +18,7 @@
         android:theme="@style/Theme.CleanMVVMCoroutineHilt"
         tools:targetApi="31">
         <activity
-            android:name=".view.MainActivity"
+            android:name="com.vjchauhan.cleanmvvmcoroutinehilt.data.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

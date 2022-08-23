@@ -1,4 +1,4 @@
-package com.vjchauhan.cleanmvvmcoroutinehilt.adapter
+package com.vjchauhan.cleanmvvmcoroutinehilt.presentation.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.bumptech.glide.Glide
 import com.vjchauhan.cleanmvvmcoroutinehilt.databinding.ListRowBinding
-import com.vjchauhan.cleanmvvmcoroutinehilt.model.ModelItem
+import com.vjchauhan.cleanmvvmcoroutinehilt.data.model.ModelItem
 
-class ListAdapter:RecyclerView.Adapter<ListAdapter.NewsViewHolder>() {
+class ListAdapter:RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
 
     private val callback = object : DiffUtil.ItemCallback<ModelItem>(){
@@ -29,15 +29,15 @@ class ListAdapter:RecyclerView.Adapter<ListAdapter.NewsViewHolder>() {
 
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ListRowBinding
             .inflate(LayoutInflater.from(parent.context),parent,false)
-        return NewsViewHolder(binding)
+        return ViewHolder(binding)
     }
 
 
 
-    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val article = differ.currentList[position]
         holder.bind(article)
     }
@@ -46,7 +46,7 @@ class ListAdapter:RecyclerView.Adapter<ListAdapter.NewsViewHolder>() {
         return differ.currentList.size
     }
 
-    inner class NewsViewHolder(
+    inner class ViewHolder(
         val binding:ListRowBinding):
         RecyclerView.ViewHolder(binding.root){
            fun bind(model: ModelItem){
