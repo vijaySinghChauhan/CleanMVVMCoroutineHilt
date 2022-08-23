@@ -27,13 +27,13 @@
         app:layout_constraintHorizontal_bias="0.196"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.089"
+        app:layout_constraintVertical_bias="0.11"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="9dp"
+        android:layout_height="0dp"
         android:layout_marginStart="134dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="236dp"
@@ -45,8 +45,8 @@
 
     <TextView
         android:id="@+id/userid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="10dp"
+        android:layout_height="85dp"
         android:layout_marginTop="51dp"
         android:layout_marginEnd="344dp"
         android:text="id"
