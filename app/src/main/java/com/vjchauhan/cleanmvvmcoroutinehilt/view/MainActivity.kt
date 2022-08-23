@@ -1,7 +1,8 @@
-package com.vjchauhan.cleanmvvmcoroutinehilt
+package com.vjchauhan.cleanmvvmcoroutinehilt.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.vjchauhan.cleanmvvmcoroutinehilt.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

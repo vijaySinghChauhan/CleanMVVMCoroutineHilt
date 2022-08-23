@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".view.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
+        tools:listitem="@layout/list_row"
+        android:id="@+id/recyclerView"
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
