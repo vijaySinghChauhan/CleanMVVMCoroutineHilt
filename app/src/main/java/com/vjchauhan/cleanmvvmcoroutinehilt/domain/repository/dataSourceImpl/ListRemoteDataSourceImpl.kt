@@ -16,7 +16,7 @@ class ListRemoteDataSourceImpl(
 
 
     override suspend fun getSearchedList(
-        searchQuery: String,
+        searchQuery: Int,
     ): Response<ApiResponse> {
         return listAPIService.getSearched(searchQuery.toInt())
     }

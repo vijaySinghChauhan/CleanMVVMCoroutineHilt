@@ -75,7 +75,7 @@ class SampleViewModel(
 
     fun searchlist(
 
-        searchQuery : String,
+        searchQuery : Int,
 
     ) = viewModelScope.launch {
 

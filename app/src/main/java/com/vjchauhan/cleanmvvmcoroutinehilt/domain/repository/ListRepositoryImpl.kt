@@ -20,7 +20,7 @@ class ListRepositoryImpl(
     }
 
     override suspend fun getSearchedList(
-        searchQuery: String,
+        searchQuery: Int,
     ): Resource<ApiResponse> {
         return responseToResource(
             listRemoteDataSource.getSearchedList(searchQuery)

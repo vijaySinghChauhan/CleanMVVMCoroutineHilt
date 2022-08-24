@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AbsListView
-import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -149,7 +149,22 @@ class MainActivity : AppCompatActivity() {
         binding.svList.setOnQueryTextListener(
             object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(p0: String?): Boolean {
-                    sampleViewModel.searchlist( p0.toString())
+
+//                    if (p0.equals(""))
+//                    {
+//                        sampleViewModel.getList()
+//                    }
+
+                    try {
+                        if (p0 != null) {
+                            sampleViewModel.searchlist( p0.toInt())
+                        }
+                    }
+                    catch (e:Exception)
+                    {
+                        sampleViewModel.getList()
+                    }
+
                     viewSearchedlist()
                     return false
                 }
@@ -157,7 +172,20 @@ class MainActivity : AppCompatActivity() {
                 override fun onQueryTextChange(p0: String?): Boolean {
                     MainScope().launch {
                         delay(2000)
-                        sampleViewModel.searchlist( p0.toString())
+
+//                        if (p0.equals(""))
+//                        {
+//                            sampleViewModel.getList()
+//                        }
+                        try {
+                            if (p0 != null) {
+                                sampleViewModel.searchlist( p0.toInt())
+                            }
+                        }
+                        catch (e:Exception)
+                        {
+                            sampleViewModel.getList()
+                        }
                         viewSearchedlist()
                     }
                     return false

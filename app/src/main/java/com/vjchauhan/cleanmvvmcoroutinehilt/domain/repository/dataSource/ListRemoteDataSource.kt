@@ -6,5 +6,5 @@ import retrofit2.Response
 
 interface ListRemoteDataSource {
     suspend fun getList():Response<ApiResponse>
-    suspend fun getSearchedList(searchQuery:String):Response<ApiResponse>
+    suspend fun getSearchedList(searchQuery:Int):Response<ApiResponse>
 }

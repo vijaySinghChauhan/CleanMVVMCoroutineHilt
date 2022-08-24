@@ -2,12 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".data.view.MainActivity">
-    <SearchView
+    <androidx.appcompat.widget.SearchView
+        app:searchHintIcon="@android:drawable/ic_search_category_default"
+        app:searchIcon="@android:drawable/ic_search_category_default"
+        android:inputType="number"
+        android:tooltipText="You can search"
         android:layout_margin="5dp"
         android:id="@+id/svList"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,7 +28,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/svList"
-
         app:layout_constrainedHeight="true"
         tools:listitem="@layout/list_row" />
 
