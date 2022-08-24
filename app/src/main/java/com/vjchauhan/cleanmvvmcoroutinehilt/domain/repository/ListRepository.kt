@@ -10,6 +10,7 @@ interface ListRepository{
 
       suspend fun getList(): Resource<ApiResponse>
       suspend fun getSearchedList(searchQuery:String) : Resource<ApiResponse>
+
       suspend fun saveList(model: ModelItem)
       suspend fun deleteList(model: ModelItem)
       fun getSavedList(): Flow<List<ModelItem>>

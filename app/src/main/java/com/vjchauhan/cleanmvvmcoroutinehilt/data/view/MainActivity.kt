@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vjchauhan.cleanmvvmcoroutinehilt.databinding.ActivityMainBinding
 import com.vjchauhan.cleanmvvmcoroutinehilt.presentation.adapter.SampleListAdapter
 import com.vjchauhan.cleanmvvmcoroutinehilt.presentation.vm.ListViewModelFactory
-import com.vjchauhan.cleanmvvmcoroutinehilt.presentation.vm.ViewModel
+import com.vjchauhan.cleanmvvmcoroutinehilt.presentation.vm.SampleViewModel
 
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.MainScope
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     private var isLastPage = false
     private var pages = 0
 
-    lateinit var viewModel: ViewModel
+    lateinit var sampleViewModel: SampleViewModel
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,8 +51,8 @@ class MainActivity : AppCompatActivity() {
 //            navController
 //        )
 
-        viewModel = ViewModelProvider(this, factory)
-            .get(ViewModel::class.java)
+        sampleViewModel = ViewModelProvider(this, factory)
+            .get(SampleViewModel::class.java)
 
         initRecyclerView()
         viewlistList()
@@ -61,8 +61,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun viewlistList() {
 
-        viewModel.getList()
-        viewModel.mList.observe(this, { response ->
+        sampleViewModel.getList()
+        sampleViewModel.mList.observe(this, { response ->
             when (response) {
                 is com.vjchauhan.cleanmvvmcoroutinehilt.utils.Resource.Success<*> -> {
 
@@ -135,7 +135,7 @@ class MainActivity : AppCompatActivity() {
             val shouldPaginate = !isLoading && !isLastPage && hasReachedToEnd && isScrolling
             if (shouldPaginate) {
                 page++
-                viewModel.getList()
+                sampleViewModel.getList()
                 isScrolling = false
 
             }
@@ -149,16 +149,16 @@ class MainActivity : AppCompatActivity() {
         binding.svList.setOnQueryTextListener(
             object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(p0: String?): Boolean {
-                    viewModel.searchlist( p0.toString())
-                //    viewSearchedlist()
+                    sampleViewModel.searchlist( p0.toString())
+                    viewSearchedlist()
                     return false
                 }
 
                 override fun onQueryTextChange(p0: String?): Boolean {
                     MainScope().launch {
                         delay(2000)
-                        viewModel.searchlist( p0.toString())
-                      //  viewSearchedlist()
+                        sampleViewModel.searchlist( p0.toString())
+                        viewSearchedlist()
                     }
                     return false
                 }
@@ -175,39 +175,38 @@ class MainActivity : AppCompatActivity() {
 
             })
     }
-}
-
-
-
-
-    /*fun viewSearchedlist(){
-        viewModel.searchedlist.observe(viewLifecycleOwner,{response->
+    fun viewSearchedlist(){
+        sampleViewModel.searchedList.observe(this,{ response->
             when(response){
-                is com.vjchauhan.cleanmvvmcoroutinehilt.utils.Resource.Success->{
+                is com.vjchauhan.cleanmvvmcoroutinehilt.utils.Resource.Success<*> ->{
 
                     hideProgressBar()
                     response.data?.let {
-                        Log.i("MYTAG","came here ${it.articles.toList().size}")
-                        listAdapter.differ.submitList(it.articles.toList())
-                        if(it.totalResults%20 == 0) {
-                            pages = it.totalResults / 20
+                        Log.i("MYTAG","search here ${it.toList()}")
+                        sampleListAdapter.differ.submitList(it.toList())
+                        if(it.size%20 == 0) {
+                            pages = it.size / 20
                         }else{
-                            pages = it.totalResults/20+1
+                            pages = it.size/20+1
                         }
                         isLastPage = page == pages
                     }
                 }
-                is com.vjchauhan.cleanmvvmcoroutinehilt.utils.Resource.Error->{
+                is com.vjchauhan.cleanmvvmcoroutinehilt.utils.Resource.Error<*> ->{
                     hideProgressBar()
                     response.message?.let {
                         Toast.makeText(this@MainActivity,"An error occurred : $it", Toast.LENGTH_LONG).show()
                     }
                 }
 
-                is com.vjchauhan.cleanmvvmcoroutinehilt.utils.Resource.Loading->{
+                is com.vjchauhan.cleanmvvmcoroutinehilt.utils.Resource.Loading<*> ->{
                     showProgressBar()
                 }
-
             }
         })
-    }*/
+    }
+}
+
+
+
+

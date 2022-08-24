@@ -23,7 +23,7 @@ class APIServiceTest {
     fun setUp() {
         server = MockWebServer()
         service = Retrofit.Builder()
-            .baseUrl(server.url("post"))
+            .baseUrl(server.url("https://jsonplaceholder.typicode.com/posts/"))
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(APIService::class.java)
@@ -69,8 +69,10 @@ class APIServiceTest {
             val articlesList = responseBody!!
             val article = articlesList[0]
             assertThat(article.title).isEqualTo("Vijay")
-            assertThat(article.url).isEqualTo("https://www.cnbc.com/2021/01/04/samsung-galaxy-unpacked-2021.html")
+            assertThat(article.url).isEqualTo("https://upload.wikimedia.org/wikipedia/commons/b/b2/JPEG_compression_Example.jpg")
             assertThat(article.body).isEqualTo("Desc")
+            assertThat(article.userId).isEqualTo(1)
+            assertThat(article.id).isEqualTo(0)
         }
     }
 

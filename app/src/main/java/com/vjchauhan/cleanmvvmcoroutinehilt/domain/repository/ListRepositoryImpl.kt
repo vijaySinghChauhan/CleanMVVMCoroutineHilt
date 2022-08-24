@@ -21,7 +21,6 @@ class ListRepositoryImpl(
 
     override suspend fun getSearchedList(
         searchQuery: String,
-
     ): Resource<ApiResponse> {
         return responseToResource(
             listRemoteDataSource.getSearchedList(searchQuery)
@@ -36,7 +35,16 @@ class ListRepositoryImpl(
         }
         return Resource.Error(response.message())
     }
-    
+    private fun responseToResourceSearch(response:Response<ModelItem>):Resource<ModelItem>{
+        if(response.isSuccessful){
+            response.body()?.let {result->
+                return Resource.Success(result)
+            }
+        }
+        return Resource.Error(response.message())
+    }
+
+
 
     override suspend fun saveList(article: ModelItem) {
         listLocalDataSource.saveItemToDB(article)

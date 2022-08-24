@@ -2,6 +2,7 @@ package com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository.dataSourceImpl
 
 
 import com.vjchauhan.cleanmvvmcoroutinehilt.data.model.ApiResponse
+import com.vjchauhan.cleanmvvmcoroutinehilt.data.model.ModelItem
 import com.vjchauhan.cleanmvvmcoroutinehilt.data.network.APIService
 import retrofit2.Response
 
@@ -15,10 +16,8 @@ class ListRemoteDataSourceImpl(
 
 
     override suspend fun getSearchedList(
-
         searchQuery: String,
-
     ): Response<ApiResponse> {
-        return listAPIService.getSearched(searchQuery)
+        return listAPIService.getSearched(searchQuery.toInt())
     }
 }

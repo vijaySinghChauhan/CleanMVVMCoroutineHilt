@@ -15,7 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class ViewModel(
+class SampleViewModel(
     private val app:Application,
     private val getListUseCase: GetListUseCase,
     private val getSearchedListUseCase: GetSearchedListUseCase,
@@ -71,19 +71,21 @@ class ViewModel(
     }
 
     //search
-    val searchedList : MutableLiveData<Resource<ApiResponse>> = MutableLiveData()
+    val searchedList :  MutableLiveData<Resource<ApiResponse>> = MutableLiveData()
 
     fun searchlist(
 
         searchQuery : String,
 
     ) = viewModelScope.launch {
+
         searchedList.postValue(Resource.Loading())
         try {
             if (isNetworkAvailable(app)) {
                 val response = getSearchedListUseCase.execute(
                     searchQuery
                 )
+
                 searchedList.postValue(response)
             } else {
                 searchedList.postValue(Resource.Error("No internet connection"))

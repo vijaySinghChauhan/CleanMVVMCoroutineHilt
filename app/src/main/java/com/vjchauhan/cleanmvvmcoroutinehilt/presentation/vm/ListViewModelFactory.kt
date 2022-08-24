@@ -15,7 +15,7 @@ class ListViewModelFactory(
     private val deleteSavedListUseCase: DeleteSavedListUseCase
 ):ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return ViewModel(
+        return SampleViewModel(
             app,
             getListUseCase,
             getSearchedListUseCase,
