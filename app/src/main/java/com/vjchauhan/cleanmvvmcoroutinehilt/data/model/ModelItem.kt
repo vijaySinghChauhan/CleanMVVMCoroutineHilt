@@ -19,5 +19,5 @@ data class ModelItem(
     @SerializedName("body")
     var body: String = "",
     @SerializedName("url")
-    var url: String = "https://picsum.photos/200/300.png"
+    var url: String = "https://picsum.photos/200/300"
 ): Serializable

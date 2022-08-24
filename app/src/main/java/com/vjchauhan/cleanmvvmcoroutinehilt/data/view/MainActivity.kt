@@ -8,12 +8,10 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.vjchauhan.cleanmvvmcoroutinehilt.R
 import com.vjchauhan.cleanmvvmcoroutinehilt.databinding.ActivityMainBinding
-import com.vjchauhan.cleanmvvmcoroutinehilt.presentation.adapter.ListAdapter
+import com.vjchauhan.cleanmvvmcoroutinehilt.presentation.adapter.SampleListAdapter
 import com.vjchauhan.cleanmvvmcoroutinehilt.presentation.vm.ListViewModelFactory
 import com.vjchauhan.cleanmvvmcoroutinehilt.presentation.vm.ViewModel
 
@@ -30,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var factory: ListViewModelFactory
 
     @Inject
-    lateinit var listAdapter: ListAdapter
+    lateinit var sampleListAdapter: SampleListAdapter
     private var page = 1
     private var isScrolling = false
     private var isLoading = false
@@ -71,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                     hideProgressBar()
                     response.data?.let {
                         Log.i("MYTAG", "came here ${it.size}")
-                        listAdapter.differ.submitList(it.toList())
+                        sampleListAdapter.differ.submitList(it.toList())
                         if (it .size % 20 == 0) {
                             pages = it.size / 20
                         } else {
@@ -99,7 +97,7 @@ class MainActivity : AppCompatActivity() {
     private fun initRecyclerView() {
         // listAdapter = listAdapter()
         binding.recyclerView.apply {
-            adapter = listAdapter
+            adapter = sampleListAdapter
             layoutManager = LinearLayoutManager(this@MainActivity)
             addOnScrollListener(this@MainActivity.onScrollListener)
         }

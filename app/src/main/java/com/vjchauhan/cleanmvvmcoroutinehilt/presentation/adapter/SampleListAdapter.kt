@@ -11,12 +11,12 @@ import com.bumptech.glide.Glide
 import com.vjchauhan.cleanmvvmcoroutinehilt.databinding.ListRowBinding
 import com.vjchauhan.cleanmvvmcoroutinehilt.data.model.ModelItem
 
-class ListAdapter:RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+class SampleListAdapter:RecyclerView.Adapter<SampleListAdapter.ViewHolder>() {
 
 
     private val callback = object : DiffUtil.ItemCallback<ModelItem>(){
         override fun areItemsTheSame(oldItem: ModelItem, newItem: ModelItem): Boolean {
-            return oldItem.url == newItem.url
+            return oldItem.title  == newItem.title
         }
 
         override fun areContentsTheSame(oldItem: ModelItem, newItem: ModelItem): Boolean {
@@ -59,6 +59,7 @@ class ListAdapter:RecyclerView.Adapter<ListAdapter.ViewHolder>() {
                load(model.url).
                into(binding.imageView)
 
+
                binding.root.setOnClickListener {
                   onItemClickListener?.let {
                         it(model)
@@ -75,12 +76,3 @@ class ListAdapter:RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
 
 }
-
-
-
-
-
-
-
-
-

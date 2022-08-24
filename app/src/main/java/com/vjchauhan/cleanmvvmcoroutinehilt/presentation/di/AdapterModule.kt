@@ -1,7 +1,7 @@
 package com.vjchauhan.cleanmvvmcoroutinehilt.presentation.di
 
 
-import com.vjchauhan.cleanmvvmcoroutinehilt.presentation.adapter.ListAdapter
+import com.vjchauhan.cleanmvvmcoroutinehilt.presentation.adapter.SampleListAdapter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,7 +13,7 @@ import javax.inject.Singleton
 class AdapterModule {
    @Singleton
    @Provides
-   fun providelistAdapter(): ListAdapter {
-       return ListAdapter()
+   fun providelistAdapter(): SampleListAdapter {
+       return SampleListAdapter()
    }
 }
