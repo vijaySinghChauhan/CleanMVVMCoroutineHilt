@@ -4,7 +4,7 @@
     package="com.vjchauhan.cleanmvvmcoroutinehilt">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".App"
@@ -18,7 +18,12 @@
         android:theme="@style/Theme.CleanMVVMCoroutineHilt"
         tools:targetApi="31">
         <activity
-            android:name="com.vjchauhan.cleanmvvmcoroutinehilt.data.view.MainActivity"
+            android:name=".presentation.view.MainActivity2"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".presentation.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

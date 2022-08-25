@@ -8,6 +8,9 @@
     android:layout_margin="5dp"
     android:elevation="5dp"
     app:cardElevation="10dp"
+    app:cardCornerRadius="12dp"
+    app:cardPreventCornerOverlap="false"
+
     app:cardMaxElevation="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,11 +19,12 @@
         android:background="@color/white">
 
         <ImageView
+            android:scaleType="centerCrop"
+            android:background="@drawable/image"
             android:id="@+id/imageView"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="5dp"
-            android:scaleType="fitXY"
             android:src="@mipmap/ic_launcher"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintCircleRadius="@dimen/cardview_default_elevation"

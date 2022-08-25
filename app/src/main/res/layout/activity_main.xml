@@ -1,26 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".data.view.MainActivity">
-    <androidx.appcompat.widget.SearchView
-        android:focusable="true"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/black"
-        android:iconifiedByDefault="false"
-        app:searchHintIcon="@android:drawable/ic_menu_search"
-        app:searchIcon="@android:drawable/ic_menu_search"
-        android:inputType="number"
-        android:queryHint="Search"
-        android:theme="@style/SearchViewStyle"
-        android:layout_margin="5dp"
-        android:id="@+id/svList"
+    tools:context=".presentation.view.MainActivity">
+
+    <SearchView
+        android:id="@+id/sv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-         />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -30,7 +24,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/svList"
+        app:layout_constraintTop_toBottomOf="@+id/sv"
         app:layout_constrainedHeight="true"
         tools:listitem="@layout/list_row" />
 
@@ -40,10 +34,12 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="@+id/recyclerView"
         app:layout_constraintStart_toStartOf="@+id/recyclerView"
-        app:layout_constraintTop_toBottomOf="@+id/svList" />
+        app:layout_constraintTop_toBottomOf="@+id/sv" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

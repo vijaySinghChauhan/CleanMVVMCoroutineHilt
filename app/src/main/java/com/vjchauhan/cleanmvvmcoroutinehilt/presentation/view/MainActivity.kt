@@ -1,19 +1,19 @@
-package com.vjchauhan.cleanmvvmcoroutinehilt.data.view
+package com.vjchauhan.cleanmvvmcoroutinehilt.presentation.view
 
-import android.R
-import android.R.id
-import android.graphics.Color
+
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AbsListView
 import android.widget.EditText
+
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.vjchauhan.cleanmvvmcoroutinehilt.databinding.ActivityMain2Binding
 import com.vjchauhan.cleanmvvmcoroutinehilt.databinding.ActivityMainBinding
 import com.vjchauhan.cleanmvvmcoroutinehilt.presentation.adapter.SampleListAdapter
 import com.vjchauhan.cleanmvvmcoroutinehilt.presentation.vm.ListViewModelFactory
@@ -39,10 +39,10 @@ class MainActivity : AppCompatActivity() {
     private var pages = 0
 
     lateinit var sampleViewModel: SampleViewModel
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMain2Binding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
@@ -144,8 +144,8 @@ class MainActivity : AppCompatActivity() {
 
     //search
     private fun setSearchView() {
-     //   binding.svList.setQuery("1",true)
-        binding.svList.setOnQueryTextListener(
+
+        binding.sv?.setOnQueryTextListener(
             object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(p0: String?): Boolean {
                     try {
@@ -183,7 +183,7 @@ class MainActivity : AppCompatActivity() {
 
             })
 
-        binding.svList.setOnCloseListener {
+        binding.sv?.setOnCloseListener {
             initRecyclerView()
             viewlistList()
             false

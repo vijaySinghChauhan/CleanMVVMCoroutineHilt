@@ -59,7 +59,6 @@ class SampleListAdapter:RecyclerView.Adapter<SampleListAdapter.ViewHolder>() {
                load(model.url).
                into(binding.imageView)
 
-
                binding.root.setOnClickListener {
                   onItemClickListener?.let {
                         it(model)
