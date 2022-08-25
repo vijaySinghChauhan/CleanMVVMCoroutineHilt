@@ -23,7 +23,7 @@ class APIServiceTest {
     fun setUp() {
         server = MockWebServer()
         service = Retrofit.Builder()
-            .baseUrl(server.url("https://jsonplaceholder.typicode.com/posts/"))
+            .baseUrl(server.url(""))
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(APIService::class.java)
@@ -47,7 +47,7 @@ class APIServiceTest {
             val responseBody = service.getList().body()
             val request = server.takeRequest()
             assertThat(responseBody).isNotNull()
-            assertThat(request.path).isEqualTo("")
+            assertThat(request.path).isEqualTo("/posts")
         }
     }
 
@@ -57,7 +57,7 @@ class APIServiceTest {
           enqueueMockResponse("listresponse.json")
           val responseBody = service.getList().body()
           val articlesList = responseBody!!
-          assertThat(articlesList.size).isEqualTo(20)
+          assertThat(articlesList.size).isEqualTo(100)
       }
     }
 
@@ -68,11 +68,11 @@ class APIServiceTest {
             val responseBody = service.getList().body()
             val articlesList = responseBody!!
             val article = articlesList[0]
-            assertThat(article.title).isEqualTo("Vijay")
-            assertThat(article.url).isEqualTo("https://upload.wikimedia.org/wikipedia/commons/b/b2/JPEG_compression_Example.jpg")
-            assertThat(article.body).isEqualTo("Desc")
+            assertThat(article.title).isEqualTo("sunt aut facere repellat provident occaecati excepturi optio reprehenderit")
+            assertThat(article.url).isEqualTo("https://picsum.photos/200/300")
+            assertThat(article.body).isEqualTo("quia et suscipit  nsuscipit recusandae consequuntur expedita et cum  nreprehenderit molestiae ut ut quas totam  nnostrum rerum est autem sunt rem eveniet architecto")
             assertThat(article.userId).isEqualTo(1)
-            assertThat(article.id).isEqualTo(0)
+            assertThat(article.id).isEqualTo(1)
         }
     }
 

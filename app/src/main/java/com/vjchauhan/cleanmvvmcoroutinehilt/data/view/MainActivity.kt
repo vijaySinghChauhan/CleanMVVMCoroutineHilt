@@ -1,9 +1,13 @@
 package com.vjchauhan.cleanmvvmcoroutinehilt.data.view
 
+import android.R
+import android.R.id
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AbsListView
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -14,7 +18,6 @@ import com.vjchauhan.cleanmvvmcoroutinehilt.databinding.ActivityMainBinding
 import com.vjchauhan.cleanmvvmcoroutinehilt.presentation.adapter.SampleListAdapter
 import com.vjchauhan.cleanmvvmcoroutinehilt.presentation.vm.ListViewModelFactory
 import com.vjchauhan.cleanmvvmcoroutinehilt.presentation.vm.SampleViewModel
-
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
@@ -43,13 +46,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-//        val navHostFragment = supportFragmentManager
-//            .findFragmentById(R.id.fragment) as NavHostFragment
-//        val navController = navHostFragment.navController
-//
-//        binding.bnv.setupWithNavController(
-//            navController
-//        )
 
         sampleViewModel = ViewModelProvider(this, factory)
             .get(SampleViewModel::class.java)
@@ -62,7 +58,7 @@ class MainActivity : AppCompatActivity() {
     private fun viewlistList() {
 
         sampleViewModel.getList()
-        sampleViewModel.mList.observe(this, { response ->
+        sampleViewModel.mList.observe(this) { response ->
             when (response) {
                 is com.vjchauhan.cleanmvvmcoroutinehilt.utils.Resource.Success<*> -> {
 
@@ -70,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                     response.data?.let {
                         Log.i("MYTAG", "came here ${it.size}")
                         sampleListAdapter.differ.submitList(it.toList())
-                        if (it .size % 20 == 0) {
+                        if (it.size % 20 == 0) {
                             pages = it.size / 20
                         } else {
                             pages = it.size / 20 + 1
@@ -81,7 +77,11 @@ class MainActivity : AppCompatActivity() {
                 is com.vjchauhan.cleanmvvmcoroutinehilt.utils.Resource.Error<*> -> {
                     hideProgressBar()
                     response.message?.let {
-                        Toast.makeText(this@MainActivity, "An error occurred : $it", Toast.LENGTH_LONG)
+                        Toast.makeText(
+                            this@MainActivity,
+                            "An error occurred : $it",
+                            Toast.LENGTH_LONG
+                        )
                             .show()
                     }
                 }
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
             }
-        })
+        }
     }
 
     private fun initRecyclerView() {
@@ -139,22 +139,15 @@ class MainActivity : AppCompatActivity() {
                 isScrolling = false
 
             }
-
-
         }
     }
 
     //search
     private fun setSearchView() {
+     //   binding.svList.setQuery("1",true)
         binding.svList.setOnQueryTextListener(
             object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(p0: String?): Boolean {
-
-//                    if (p0.equals(""))
-//                    {
-//                        sampleViewModel.getList()
-//                    }
-
                     try {
                         if (p0 != null) {
                             sampleViewModel.searchlist( p0.toInt())
@@ -171,12 +164,9 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onQueryTextChange(p0: String?): Boolean {
                     MainScope().launch {
-                        delay(2000)
+                        delay(1000)
 
-//                        if (p0.equals(""))
-//                        {
-//                            sampleViewModel.getList()
-//                        }
+
                         try {
                             if (p0 != null) {
                                 sampleViewModel.searchlist( p0.toInt())
@@ -193,45 +183,45 @@ class MainActivity : AppCompatActivity() {
 
             })
 
-        binding.svList.setOnCloseListener(
-            object : SearchView.OnCloseListener {
-                override fun onClose(): Boolean {
-                    initRecyclerView()
-                    viewlistList()
-                    return false
-                }
-
-            })
+        binding.svList.setOnCloseListener {
+            initRecyclerView()
+            viewlistList()
+            false
+        }
     }
     fun viewSearchedlist(){
-        sampleViewModel.searchedList.observe(this,{ response->
-            when(response){
-                is com.vjchauhan.cleanmvvmcoroutinehilt.utils.Resource.Success<*> ->{
+        sampleViewModel.searchedList.observe(this) { response ->
+            when (response) {
+                is com.vjchauhan.cleanmvvmcoroutinehilt.utils.Resource.Success<*> -> {
 
                     hideProgressBar()
                     response.data?.let {
-                        Log.i("MYTAG","search here ${it.toList()}")
+                        Log.i("MYTAG", "search here ${it.toList()}")
                         sampleListAdapter.differ.submitList(it.toList())
-                        if(it.size%20 == 0) {
+                        if (it.size % 20 == 0) {
                             pages = it.size / 20
-                        }else{
-                            pages = it.size/20+1
+                        } else {
+                            pages = it.size / 20 + 1
                         }
                         isLastPage = page == pages
                     }
                 }
-                is com.vjchauhan.cleanmvvmcoroutinehilt.utils.Resource.Error<*> ->{
+                is com.vjchauhan.cleanmvvmcoroutinehilt.utils.Resource.Error<*> -> {
                     hideProgressBar()
                     response.message?.let {
-                        Toast.makeText(this@MainActivity,"An error occurred : $it", Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            this@MainActivity,
+                            "An error occurred : $it",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
 
-                is com.vjchauhan.cleanmvvmcoroutinehilt.utils.Resource.Loading<*> ->{
+                is com.vjchauhan.cleanmvvmcoroutinehilt.utils.Resource.Loading<*> -> {
                     showProgressBar()
                 }
             }
-        })
+        }
     }
 }
 

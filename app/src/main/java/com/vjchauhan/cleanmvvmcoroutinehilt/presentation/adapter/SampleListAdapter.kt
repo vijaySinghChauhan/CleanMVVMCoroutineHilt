@@ -52,8 +52,8 @@ class SampleListAdapter:RecyclerView.Adapter<SampleListAdapter.ViewHolder>() {
            fun bind(model: ModelItem){
                Log.i("MYTAG","came here ${model.title}")
                binding.title .text = model.title
-               binding.desc.text = model.body
-               binding.userid.text = model.userId.toString()
+               binding.desc.text = model.userId.toString()
+//               binding.userid.text = model.userId.toString()
 
                Glide.with(binding.imageView.context).
                load(model.url).
