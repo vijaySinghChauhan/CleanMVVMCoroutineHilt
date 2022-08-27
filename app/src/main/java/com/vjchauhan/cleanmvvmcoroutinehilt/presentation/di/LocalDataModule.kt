@@ -2,7 +2,7 @@ package com.vjchauhan.cleanmvvmcoroutinehilt.presentation.di
 
 import com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository.dataSourceImpl.ListLocalDataSource
 import com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository.dataSourceImpl.ListLocalDataSourceImpl
-import com.vjchauhan.cleanmvvmcoroutinehilt.presentation.di.db.ModelItemDAO
+import com.vjchauhan.cleanmvvmcoroutinehilt.data.db.ModelItemDAO
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -5,14 +5,15 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs.kotlin'
 }
+apply plugin: 'kotlin-android'
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.vjchauhan.cleanmvvmcoroutinehilt"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
         buildConfigField("String","BASE_URL",MY_URL)
@@ -93,6 +94,9 @@ dependencies {
     testImplementation "androidx.room:room-testing:$room_version"
 // card view
     implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.core:core-ktx:+"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 
 }

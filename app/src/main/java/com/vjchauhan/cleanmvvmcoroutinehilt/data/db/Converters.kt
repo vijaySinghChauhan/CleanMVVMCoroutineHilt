@@ -1,4 +1,4 @@
-package com.vjchauhan.cleanmvvmcoroutinehilt.presentation.di.db
+package com.vjchauhan.cleanmvvmcoroutinehilt.data.db
 
 import androidx.room.TypeConverter
 import com.vjchauhan.cleanmvvmcoroutinehilt.data.model.Source

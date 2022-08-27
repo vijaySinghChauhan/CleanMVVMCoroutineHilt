@@ -1,4 +1,4 @@
-package com.vjchauhan.cleanmvvmcoroutinehilt.presentation.di.db
+package com.vjchauhan.cleanmvvmcoroutinehilt.data.db
 
 import androidx.room.*
 import com.vjchauhan.cleanmvvmcoroutinehilt.data.model.ModelItem
@@ -14,7 +14,5 @@ interface ModelItemDAO {
 
     @Delete
     suspend fun deleteModel(model: ModelItem)
-
-
 
 }

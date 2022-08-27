@@ -14,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vjchauhan.cleanmvvmcoroutinehilt.databinding.ActivityMain2Binding
-import com.vjchauhan.cleanmvvmcoroutinehilt.databinding.ActivityMainBinding
 import com.vjchauhan.cleanmvvmcoroutinehilt.presentation.adapter.SampleListAdapter
 import com.vjchauhan.cleanmvvmcoroutinehilt.presentation.vm.ListViewModelFactory
 import com.vjchauhan.cleanmvvmcoroutinehilt.presentation.vm.SampleViewModel
@@ -92,6 +91,15 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
+
+        sampleViewModel.getSavedlist().observe(this) { response ->
+
+                    hideProgressBar()
+                    response?.let {
+                        sampleListAdapter.differ.submitList(it)
+                    }
+        }
+
     }
 
     private fun initRecyclerView() {

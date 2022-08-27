@@ -12,6 +12,7 @@ import com.vjchauhan.cleanmvvmcoroutinehilt.domain.usecases.*
 import com.vjchauhan.cleanmvvmcoroutinehilt.utils.Resource
 
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -24,6 +25,8 @@ class SampleViewModel(
     private val deleteSavedListUseCase: DeleteSavedListUseCase
 ) : AndroidViewModel(app) {
     val mList: MutableLiveData<Resource<ApiResponse>> = MutableLiveData()
+    var mListRoom: LiveData<ArrayList<ModelItem>> = MutableLiveData()
+
 
     fun getList() = viewModelScope.launch(Dispatchers.IO) {
         mList.postValue(Resource.Loading())
@@ -34,6 +37,7 @@ class SampleViewModel(
           mList.postValue(apiResult)
       }else{
           mList.postValue(Resource.Error("Internet is not available"))
+
       }
 
         }catch (e:Exception){
@@ -111,6 +115,7 @@ class SampleViewModel(
     }
 
 }
+
 
 
 

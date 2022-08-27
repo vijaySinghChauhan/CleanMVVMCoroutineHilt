@@ -1,4 +1,4 @@
-package com.vjchauhan.cleanmvvmcoroutinehilt.presentation.di.db
+package com.vjchauhan.cleanmvvmcoroutinehilt.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

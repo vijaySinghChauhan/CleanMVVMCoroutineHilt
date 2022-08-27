@@ -2,8 +2,8 @@ package com.vjchauhan.cleanmvvmcoroutinehilt.presentation.di
 
 import android.app.Application
 import androidx.room.Room
-import com.vjchauhan.cleanmvvmcoroutinehilt.presentation.di.db.ArticleDatabase
-import com.vjchauhan.cleanmvvmcoroutinehilt.presentation.di.db.ModelItemDAO
+import com.vjchauhan.cleanmvvmcoroutinehilt.data.db.ArticleDatabase
+import com.vjchauhan.cleanmvvmcoroutinehilt.data.db.ModelItemDAO
 
 import dagger.Module
 import dagger.Provides

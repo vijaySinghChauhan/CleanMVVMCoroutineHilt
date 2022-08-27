@@ -17,11 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CleanMVVMCoroutineHilt"
         tools:targetApi="31">
-        <activity
-            android:name=".presentation.view.MainActivity2"
-            android:exported="true">
 
-        </activity>
         <activity
             android:name=".presentation.view.MainActivity"
             android:exported="true">

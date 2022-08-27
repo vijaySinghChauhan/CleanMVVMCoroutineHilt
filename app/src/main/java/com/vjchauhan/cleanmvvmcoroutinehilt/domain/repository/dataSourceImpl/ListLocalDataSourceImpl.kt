@@ -2,7 +2,7 @@ package com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository.dataSourceImpl
 
 
 import com.vjchauhan.cleanmvvmcoroutinehilt.data.model.ModelItem
-import com.vjchauhan.cleanmvvmcoroutinehilt.presentation.di.db.ModelItemDAO
+import com.vjchauhan.cleanmvvmcoroutinehilt.data.db.ModelItemDAO
 import kotlinx.coroutines.flow.Flow
 
 class ListLocalDataSourceImpl(
@@ -12,7 +12,7 @@ class ListLocalDataSourceImpl(
         articleDAO.insert(article)
     }
 
-    override fun getSavedItems(): Flow<List<ModelItem>> {
+    override fun getSavedItems(): Flow<List<ModelItem>>{
         return articleDAO.getAllList()
     }
 
