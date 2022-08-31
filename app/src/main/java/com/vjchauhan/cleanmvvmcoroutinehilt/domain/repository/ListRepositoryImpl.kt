@@ -3,8 +3,8 @@ package com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository
 
 import com.vjchauhan.cleanmvvmcoroutinehilt.data.model.ApiResponse
 import com.vjchauhan.cleanmvvmcoroutinehilt.data.model.ModelItem
-import com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository.dataSourceImpl.ListLocalDataSource
-import com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository.dataSourceImpl.ListRemoteDataSource
+import com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository.dataSource.ListLocalDataSource
+import com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository.dataSource.ListRemoteDataSource
 import com.vjchauhan.cleanmvvmcoroutinehilt.utils.Resource
 
 

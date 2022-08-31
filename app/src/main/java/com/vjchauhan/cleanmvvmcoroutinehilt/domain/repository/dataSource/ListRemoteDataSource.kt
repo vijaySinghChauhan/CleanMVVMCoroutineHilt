@@ -1,4 +1,4 @@
-package com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository.dataSourceImpl
+package com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository.dataSource
 
 import com.vjchauhan.cleanmvvmcoroutinehilt.data.model.ApiResponse
 import com.vjchauhan.cleanmvvmcoroutinehilt.data.model.ModelItem

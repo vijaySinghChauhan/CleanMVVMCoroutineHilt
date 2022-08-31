@@ -1,6 +1,6 @@
 package com.vjchauhan.cleanmvvmcoroutinehilt.presentation.di
 
-import com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository.dataSourceImpl.ListLocalDataSource
+import com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository.dataSource.ListLocalDataSource
 import com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository.dataSourceImpl.ListLocalDataSourceImpl
 import com.vjchauhan.cleanmvvmcoroutinehilt.data.db.ModelItemDAO
 import dagger.Module

@@ -1,15 +1,21 @@
 package com.vjchauhan.cleanmvvmcoroutinehilt.presentation.view
 
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewTreeObserver
+import android.view.animation.DecelerateInterpolator
 import android.widget.AbsListView
 import android.widget.EditText
 
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.animation.doOnEnd
+import androidx.core.splashscreen.SplashScreen
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,11 +27,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
+import kotlin.concurrent.schedule
 
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
     @Inject
     lateinit var factory: ListViewModelFactory
 
@@ -36,18 +45,23 @@ class MainActivity : AppCompatActivity() {
     private var isLoading = false
     private var isLastPage = false
     private var pages = 0
+    var contentHasLoaded = false
 
     lateinit var sampleViewModel: SampleViewModel
     private lateinit var binding: ActivityMain2Binding
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val splashScreen = installSplashScreen()
+
         super.onCreate(savedInstanceState)
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
+        startLoadingContent()
+        setupSplashScreen(splashScreen)
 
 
 
-        sampleViewModel = ViewModelProvider(this, factory)
-            .get(SampleViewModel::class.java)
+        sampleViewModel = ViewModelProvider(this, factory).get(SampleViewModel::class.java)
 
         initRecyclerView()
         viewlistList()
@@ -229,6 +243,43 @@ class MainActivity : AppCompatActivity() {
                     showProgressBar()
                 }
             }
+        }
+    }
+
+
+    private fun startLoadingContent() {
+        // For this example, the Timer delay represents awaiting a response from a network call
+        Timer().schedule(3000){
+            contentHasLoaded = true
+        }
+    }
+
+    private fun setupSplashScreen(splashScreen: SplashScreen) {
+        val content: View = findViewById(android.R.id.content)
+        content.viewTreeObserver.addOnPreDrawListener(
+            object : ViewTreeObserver.OnPreDrawListener {
+                override fun onPreDraw(): Boolean {
+                    return if (contentHasLoaded) {
+                        content.viewTreeObserver.removeOnPreDrawListener(this)
+                        true
+                    } else false
+                }
+            }
+        )
+
+        splashScreen.setOnExitAnimationListener { splashScreenView ->
+            val slideBack = ObjectAnimator.ofFloat(
+                splashScreenView.view,
+                View.TRANSLATION_X,
+                0f,
+                -splashScreenView.view.width.toFloat()
+            ).apply {
+                interpolator = DecelerateInterpolator()
+                duration = 800L
+                doOnEnd { splashScreenView.remove() }
+            }
+
+            slideBack.start()
         }
     }
 }

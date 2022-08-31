@@ -2,8 +2,8 @@ package com.vjchauhan.cleanmvvmcoroutinehilt.presentation.di
 
 import com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository.ListRepository
 import com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository.ListRepositoryImpl
-import com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository.dataSourceImpl.ListLocalDataSource
-import com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository.dataSourceImpl.ListRemoteDataSource
+import com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository.dataSource.ListLocalDataSource
+import com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository.dataSource.ListRemoteDataSource
 
 import dagger.Module
 import dagger.Provides

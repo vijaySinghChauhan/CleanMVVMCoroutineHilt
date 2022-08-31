@@ -1,7 +1,7 @@
 package com.vjchauhan.cleanmvvmcoroutinehilt.presentation.di
 
 import com.vjchauhan.cleanmvvmcoroutinehilt.data.network.APIService
-import com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository.dataSourceImpl.ListRemoteDataSource
+import com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository.dataSource.ListRemoteDataSource
 import com.vjchauhan.cleanmvvmcoroutinehilt.domain.repository.dataSourceImpl.ListRemoteDataSourceImpl
 
 import dagger.Module
