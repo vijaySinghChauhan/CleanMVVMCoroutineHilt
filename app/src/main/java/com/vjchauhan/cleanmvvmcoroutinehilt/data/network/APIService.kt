@@ -3,6 +3,7 @@ package com.vjchauhan.cleanmvvmcoroutinehilt.data.network
 
 import com.vjchauhan.cleanmvvmcoroutinehilt.data.model.ApiResponse
 import com.vjchauhan.cleanmvvmcoroutinehilt.data.model.ModelItem
+import com.vjchauhan.cleanmvvmcoroutinehilt.data.model.spinner.ApiSpinnerResponse
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
@@ -21,4 +22,8 @@ interface APIService {
    suspend fun getSearched(
         @Query("userId") query:Int
     ): Response<ApiResponse>
+
+    @GET("countries")
+    suspend fun getSpinnerList(
+    ): Response<ApiSpinnerResponse>
 }

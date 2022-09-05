@@ -19,15 +19,3 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
-
-# Workaround for ProGuard not recognizing dontobfuscate
-# https://speakerdeck.com/chalup/proguard
--ignorewarnings
-
--keep class * {
-    public private *;
-}
-
--dontobfuscate
--dontoptimize
--optimizations !code/allocation/variable

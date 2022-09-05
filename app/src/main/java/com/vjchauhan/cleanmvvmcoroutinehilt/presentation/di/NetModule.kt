@@ -18,7 +18,7 @@ class NetModule {
     fun provideRetrofit(): Retrofit {
          return Retrofit.Builder()
              .addConverterFactory(GsonConverterFactory.create())
-             .baseUrl(BuildConfig.BASE_URL)
+             .baseUrl(BuildConfig.BASE_SPINNER_URL)
              .build()
     }
 
